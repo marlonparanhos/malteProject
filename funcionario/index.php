@@ -68,6 +68,7 @@ $_SESSION['LAST_ACTIVITY'] = time(); // atualiza o tempo com a última atividade
         <!-- NAV após logar -->
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
+            <li><a href="index.php">Home</a></li>
             <li><a href="gerente/controle.php">Controle</a></li>
             <li><a href="cardapio/cardapio.php">Cardápio</a></li>
             <li><a href="cadastro/formulario.php">Cadastro</a></li>

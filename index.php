@@ -38,7 +38,6 @@ $_SESSION['LAST_ACTIVITY'] = time(); // atualiza o tempo com a última atividade
   <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="animate.css-master/animate.min.css">
   <link rel="icon" type="image/x-icon" href="images/favicon.ico"/>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
   <title>Itangua</title>
 </head>
@@ -340,7 +339,6 @@ $_SESSION['LAST_ACTIVITY'] = time(); // atualiza o tempo com a última atividade
           <p><i class="fa fa-square-o" aria-hidden="true"></i> Sobre nós</p>
           <p><i class="fa fa-square-o" aria-hidden="true"></i> Privacidade</p>
           <p><i class="fa fa-square-o" aria-hidden="true"></i> Direitos</p>
-          <p><i class="fa fa-square-o" aria-hidden="true"></i> Créditos</p>
         </div>
         <div class="col-lg-4 col-md-4">
           <h4>Fique conectado</h4>
