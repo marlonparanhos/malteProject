@@ -1,0 +1,389 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
+li {
+	list-style: none;
+	display: inline-block;
+}
+
+a {
+	text-decoration: none;
+	transition: all 500ms ease-in-out;
+}
+
+a:hover,
+a:active {
+	text-decoration: none;
+}
+
+h1,
+h2,
+h4 {
+	font-family: 'PT Sans Narrow', Arial sans-serif;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
+p {
+	font-size: 15px;
+	line-height: 22px;
+}
+
+.btn {
+	transition: all 400ms ease-in-out;
+	font-weight: 500 !important;
+	text-transform: uppercase;
+}
+
+.btn:hover {
+	background-color: #ededed !important;
+	color: #3c3c3c !important;
+	border: 1px solid #fff !important;
+}
+
+/*NAVEGAÇÃO*/
+
+.navbar {
+	background-color: #222222 !important;
+	text-transform: uppercase;
+	font-family: 'PT Sans Narrow', Arial, sans-serif;
+	font-weight: 700;
+}
+
+.navbar a {
+	color: #fff !important;
+	opacity: 0.7;
+}
+
+.navbar a:hover {
+	opacity: 1;
+	background-color: #111111 !important;
+}
+
+/* CABEÇALHO */
+
+.header {
+	height: auto;
+	width: 100%;
+	padding: 30px 0 30px;
+	margin-top: 50px;
+	background-image: url(../images/cerveja-garrafa2.jpg);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: #fff;
+	background-attachment: fixed;
+}
+
+.header img {
+	height: 400px;
+	width: 400px;
+	display: block;
+	margin: 0 auto;
+}
+
+.header h1 {
+	font-size: 40px;
+	font-weight: 700;
+	padding-top: 30px;
+	text-shadow: 5px 5px 8px #000;
+	color: #fff;
+}
+
+.header h1 {
+	margin-top: 20px;
+	padding: 10px;
+}
+
+@media(max-width: 768px) {
+	.header {
+		padding: 0px;
+		height: 610px;
+	}
+
+	.header img {
+		width: 360px;
+		height: 360px;
+		display: block;
+		margin: 50px auto auto auto;
+	}
+
+	.header h1 {
+		font-size: 22px;
+	}
+}
+
+/* SERVIÇOS */
+
+.servicos {
+	padding: 50px 0 80px;
+	text-align: center;
+}
+
+.servicos h2,
+.servicos h4 {
+	color: #4c4c4c;
+	margin: 20px 0 20px;
+}
+
+.servicos p {
+	color: #737373;
+	font-size: 14px;
+	padding-bottom: 40px; 
+}
+
+.servicos i {
+	height: 100px;
+	width: 100px;
+	font-size: 50px;
+	padding: 25px 20px;
+	border-radius: 50%;
+	background-color: #6699cc;
+	color: #fff;
+}
+
+@media(max-width: 768px) {
+
+	.servicos {
+		padding: 30px;
+	}
+}
+
+/* VALORES */
+
+.valores {
+	padding: 50px 0 80px;
+	text-align: center;
+	background-color: #3498db;	
+}
+
+.valores h2,
+.valores p {
+	color: #fff;
+}
+
+.valores p {
+	padding-bottom: 40px;
+}
+
+.valores .pacote p {
+	color: black;
+}
+
+.valores .pacote {
+	padding: 30px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	border-radius: 5px;
+}
+
+.pacote li {
+	display: block;
+	padding: 5px;
+}
+
+.pacote h4,
+.pacote h1,
+.pacote b {
+	color: #4c4c4c;
+}
+
+.pacote p,
+.pacote li {
+	color: #737373;
+}
+
+.pacote button {
+	margin-top: 10px;
+}
+
+@media(max-width: 768px) {
+
+	.valores {
+		padding: 30px;
+	}
+
+	.pacote {
+		margin: 30px;
+		width: 80%;
+		margin-left: 25px;
+	}
+}
+
+/* DEPOIMENTOS */
+
+.depoimentos {
+	padding: 50px 0 80px;
+	text-align: center;
+}
+
+.depoimentos img {
+	width: 180px;
+	height: 180px;
+	margin-top: 80px;
+}
+
+.depoimentos b,
+.depoimentos h2,
+.depoimentos h4 {
+	margin: 20px 0 20px;
+	color: #4c4c4c;
+}
+
+.depoimentos p {
+	color: #737373;
+}
+
+.depoimentos i {
+	height: 34px;
+	width: 34px;
+	padding: 5px;
+	font-size: 24px;
+	border-radius: 50%;
+	background-color: #a0db8e;
+	color: #fff;
+}
+
+.depoimentos i:hover {
+	background-color: #709963;
+}
+
+@media(max-width: 768px) {
+
+	.depoimentos {
+		padding: 30px;
+	}
+}
+
+/* PARCEIROS */
+
+.parceiros {
+	padding: 50px 0 80px; 
+	text-align: center;
+	background-color: #3498db;
+	color: #fff;
+}
+
+.parceiros h2 {
+	color: #fff;
+}
+
+.parceiros p {
+	padding-bottom: 40px;
+}
+
+.parceiros img {
+	width: 150px;
+	opacity: 0.7;
+	cursor: pointer;
+	transition: all 500ms ease-in-out;
+	border-radius: 20px;
+}
+
+.parceiros img:hover {
+	opacity: 1;
+	cursor: pointer;
+	background-color: rgba(255,255,255,0.9);
+	transform: scale(1.3);
+}
+
+@media(max-width: 768px) {
+
+	.parceiros {
+		padding: 30px;
+	}
+}
+
+/* CONTATO */
+
+.contato {
+	padding: 50px 0 80px;
+	text-align: center;
+}
+
+.contato p {
+	padding-bottom: 60px;
+	color: #737373;
+}
+
+.contato h2 {
+	color: #4C4C4C;
+	margin: 20px 0 20px;
+}
+
+.contato .input-group {
+	margin-bottom: 25px;
+}
+
+.contato .form-control {
+	border-radius: 0 !important;
+}
+
+.contato span {
+	border-radius: 0 !important;
+}
+
+.contato .btn {
+	border-radius: 0;
+	width: 100%;
+	font-size: 15px;
+	background-color: #f08080 !important;
+	color: #fff;
+}
+
+.contato .btn:hover {
+	background-color: #a85959 !important;
+	color: #fff !important;
+}
+
+/* FOOTER */
+
+.footer {
+	padding: 30px;
+	background-color: #222222;
+	color: #cccccc;
+}
+
+.footer .social {
+	font-size: 20px;
+	height: 30px;
+	width: 30px;
+	border: 1px solid #ccc !important;
+	text-align: center;
+	padding: 5px;
+	margin-bottom: 10px;
+	margin-right: 5px;
+	color: #ccc !important;
+}
+
+.footer input {
+	height: 40px;
+	width: 160px;
+	padding: 5px;
+	border: none;
+	background-color: #cccccc;
+	color: #000;
+}
+
+.footer button {
+	padding: 10px 5px 10px;
+	margin: -4px 0 0 5px;
+	width: 90px;
+}
+
+/* GALERIA */
+
+.galeria {
+	padding: 50px 0 80px; 
+	text-align: center;
+	background-color: #ecf0f1;
+}
