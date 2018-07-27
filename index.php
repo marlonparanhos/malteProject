@@ -318,7 +318,7 @@ $_SESSION['LAST_ACTIVITY'] = time(); // atualiza o tempo com a última atividade
           <div class="input-group wow fadeInUp" data-wow-delay="0.8s">
             <textarea class="form-control" cols="80" rows="6"></textarea>
           </div>
-          <button class="btn btn-lg btn-success wow fadeInUp" data-wow-delay="1s" id="enviar-mensagem">Enviar Menssagem</button>
+          <button class="btn btn-lg btn-success wow fadeInUp" data-wow-delay="1s" id="enviar-mensagem">Enviar Mensagem</button>
         </div>
       </div>
     </div>
@@ -354,7 +354,8 @@ $_SESSION['LAST_ACTIVITY'] = time(); // atualiza o tempo com a última atividade
   </div>
 
   <script src="js/wow.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
   <script src="js/bootstrap.min.js"></script>
   <script src="//www.powr.io/powr.js?external-type=html"></script>
   <script src="js/sweetalert.js"></script>

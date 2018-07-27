@@ -56,7 +56,6 @@ $_SESSION['LAST_ACTIVITY'] = time();
     transform: scale(1.1);
   }
 
-
   .nav-drop {
     background-color: #222222 !important;
     text-transform: uppercase;
@@ -104,7 +103,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
             </ul>
           </li>
           <li><a href="#">Seja bem-vindo <u><?php echo $_SESSION['nome']; ?></u></a></li>
-          <li><a href="#"><i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i></a></li>
+          <li><a href="../cardapio/carrinho.php"><i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i></a></li>
           <li><a class="btn btn-danger" href="../engine/controllers/logout.php">Sair</a></li>
         </ul>
       </div>
@@ -120,7 +119,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
           <img src="../images/cheers-logo.png" style="margin-bottom: 10px; width: 20%; height: auto;">
         </div>
         <h1 class="text-center wow fadeInUp" data-wow-delay="1s" style="font-size: 34px;">Área do Cliente!</h1>
-        <p class="text-center"><button class="wow fadeInUp btn btn-success" data-wow-delay="1s">FAZER PEDIDO</button></p>
+        <p class="text-center"><button class="wow fadeInUp btn btn-success" data-wow-delay="1s" id="fazer_pedido" onclick="window.location = '../cardapio/cardapio.php'">FAZER PEDIDO</button></p>
       </div>
     </div>
   </div>
@@ -132,22 +131,22 @@ $_SESSION['LAST_ACTIVITY'] = time();
       <h2 class="wow fadeInUp">Alguns Serviços</h2>
       <p class="wow fadeInUp">Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI.</p>
       <div class="row">
-        <div class="col-lg-3 col-md-3 wow fadeInLeft servHover" data-wow-delay="1.5s" id="servico01">
+        <div class="col-lg-3 col-md-3 wow fadeInLeft servHover" data-wow-delay="1.5s" id="servico01" onclick="alert($(this).attr('id'));">
           <i class="fa fa-beer" aria-hidden="true"></i>
           <h4>Serviço 1</h4>
           <p>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI.</p>
         </div>
-        <div class="col-lg-3 col-md-3 wow fadeInLeft servHover" data-wow-delay="1s">
+        <div class="col-lg-3 col-md-3 wow fadeInLeft servHover" data-wow-delay="1s" id="servico02" onclick="alert($(this).attr('id'));">
           <i class="fa fa-car" aria-hidden="true"></i>
           <h4>Serviço 2</h4>
           <p>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI.</p>
         </div>
-        <div class="col-lg-3 col-md-3 wow fadeInLeft servHover" data-wow-delay="0.5s">
+        <div class="col-lg-3 col-md-3 wow fadeInLeft servHover" data-wow-delay="0.5s" id="servico03" onclick="alert($(this).attr('id'));">
           <i class="fa fa-money" aria-hidden="true"></i>
           <h4>Serviço 3</h4>
           <p>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI.</p>
         </div>
-        <div class="col-lg-3 col-md-3 wow fadeInLeft servHover">
+        <div class="col-lg-3 col-md-3 wow fadeInLeft servHover" id="servico04" onclick="alert($(this).attr('id'));">
           <i class="fa fa-credit-card" aria-hidden="true"></i>
           <h4>Serviço 4</h4>
           <p>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI.</p>
@@ -175,7 +174,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
             <li>Item 3</li>
             <li>Item 4</li>
             <li>Item 5</li>
-            <button class="btn btn-success">Saiba Mais</button>
+            <button class="btn btn-success" onclick="alert('Pacote 1')">Saiba Mais</button>
           </div>
         </div>
 
@@ -191,7 +190,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
             <li>Item 3</li>
             <li>Item 4</li>
             <li>Item 5</li>
-            <button class="btn btn-success">Saiba Mais</button>
+            <button class="btn btn-success" onclick="alert('Pacote 2')">Saiba Mais</button>
           </div>
         </div>
 
@@ -207,7 +206,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
             <li>Item 3</li>
             <li>Item 4</li>
             <li>Item 5</li>
-            <button class="btn btn-success">Saiba Mais</button>
+            <button class="btn btn-success" onclick="alert('Pacote 3')">Saiba Mais</button>
           </div>
         </div>
 
@@ -223,7 +222,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
             <li>Item 3</li>
             <li>Item 4</li>
             <li>Item 5</li>
-            <button class="btn btn-success">Saiba Mais</button>
+            <button class="btn btn-success" onclick="alert('Pacote 4')">Saiba Mais</button>
           </div>
         </div>
       </div>
@@ -287,11 +286,5 @@ $_SESSION['LAST_ACTIVITY'] = time();
     e.preventDefault();
 
     alert('Mensagem enviada com sucesso!');
-  });
-
-  $('#servico01').click(function(e){
-    e.preventDefault();
-
-    alert('sdf');
   });
 </script>

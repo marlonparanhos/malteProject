@@ -28,13 +28,15 @@
 				$_SESSION['tipo_usuario'] = 0; // CLIENTE
 				$_SESSION['check'] = 1;
 				$result['tipo_usuario'] = 0;
+				$res = 'true';
 			} else if($verificaSenha1){
 				$_SESSION['id_usuario'] = $Funcionario['id_usuario'];
 				$_SESSION['nome'] = $Funcionario['nome'];
 				$_SESSION['email'] = $Funcionario['email'];
-				$_SESSION['tipo_usuario'] = 1; // FUNCIONÁRIO
+				$_SESSION['tipo_usuario'] = $Funcionario['tipo_funcionario'];
 				$_SESSION['check'] = 1;
-				$result['tipo_usuario'] = 1;
+				$result['tipo_usuario'] = $Funcionario['tipo_funcionario'];
+				$res = 'true';
 			} else {
 				$res = 'wrong_password';
 				session_destroy();
@@ -44,6 +46,6 @@
 			session_destroy();
 		}
 	}
-	$result['res'] = 'true';
+	$result['res'] = $res;
 	echo json_encode($result);
 ?>

@@ -21,4 +21,6 @@ function converteData($data, $tipo){
 require_once "bd/bd.php";
 require_once "classes/cliente.php";
 require_once "classes/funcionarios.php";
+require_once "classes/produtos.php";
+require_once "classes/anexo_produtos.php";
 ?>

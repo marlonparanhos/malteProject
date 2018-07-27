@@ -172,38 +172,33 @@ $_SESSION['LAST_ACTIVITY'] = time();
 <!-- FIM DO FORMULÁRIO -->
 
 <div id="footer" class="footer" style="margin-top: 20px;">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-4 col-md-4">
-        <h4>Fale Conosco</h4>
-
-        <p><i class="fa fa-home" aria-hidden="true"></i> Rua da Glória, 123</p>
-
-        <p><i class="fa fa-envelope" aria-hidden="true"></i></p>
-
-        <p><i class="fa fa-phone" aria-hidden="true"></i> (38) 9 9999-9999</p>
-
-        <p><i class="fa fa-globe" aria-hidden="true"></i></p>
-      </div>
-      <div class="col-lg-4 col-md-4">
-        <h4>+ Informações</h4>
-        <p><i class="fa fa-square-o" aria-hidden="true"></i> Sobre nós</p>
-        <p><i class="fa fa-square-o" aria-hidden="true"></i> Privacidade</p>
-        <p><i class="fa fa-square-o" aria-hidden="true"></i> Direitos</p>
-        <p><i class="fa fa-square-o" aria-hidden="true"></i> Créditos</p>
-      </div>
-      <div class="col-lg-4 col-md-4">
-        <h4>Fique conectado</h4>
-        <a href="http://facebook.com"><i class="social fa fa-facebook" aria-hidden="true"></i></a>
-        <a href="http://twitter.com"><i class="social fa fa-twitter" aria-hidden="true"></i></a>
-        <a href="http://pinterest.com"><i class="social fa fa-pinterest" aria-hidden="true"></i></a>
-        <a href="http://youtube.com"><i class="social fa fa-youtube" aria-hidden="true"></i></a>
-        <a href="http://instagram.com/tourpelomundo"><i class="social fa fa-instagram" aria-hidden="true"></i></a><br>
-        <input type="email" name="" placeholder="Receba nossas atualizações"><button class="btn btn-success">Assinar</button>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-4">
+            <h4>Fale Conosco</h4>
+            <p><i class="fa fa-home" aria-hidden="true"></i> Rua da Breja, 123</p>
+            <p><i class="fa fa-envelope" aria-hidden="true"></i> itangua@gmail.com</p>
+            <p><i class="fa fa-phone" aria-hidden="true"></i> (38) 9 9999-9999</p>
+          </div>
+          <div class="col-lg-4 col-md-4">
+            <h4>+ Informações</h4>
+            <p><i class="fa fa-square-o" aria-hidden="true"></i> Sobre nós</p>
+            <p><i class="fa fa-square-o" aria-hidden="true"></i> Privacidade</p>
+            <p><i class="fa fa-square-o" aria-hidden="true"></i> Direitos</p>
+            <p><i class="fa fa-square-o" aria-hidden="true"></i> Créditos</p>
+          </div>
+          <div class="col-lg-4 col-md-4">
+            <h4>Fique conectado</h4>
+            <a href="http://facebook.com"><i class="social fa fa-facebook" aria-hidden="true"></i></a>
+            <a href="http://twitter.com"><i class="social fa fa-twitter" aria-hidden="true"></i></a>
+            <a href="http://pinterest.com"><i class="social fa fa-pinterest" aria-hidden="true"></i></a>
+            <a href="http://youtube.com"><i class="social fa fa-youtube" aria-hidden="true"></i></a>
+            <a href="http://instagram.com/tourpelomundo"><i class="social fa fa-instagram" aria-hidden="true"></i></a><br>
+            <input type="email" name="" placeholder="Receba nossas atualizações"><button class="btn btn-success">Assinar</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
 <script src="../js/jquery-1.11.3.min.js" ></script>
 <script src="../js/bootstrap.min.js"></script>

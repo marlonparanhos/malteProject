@@ -22,6 +22,7 @@
           },
           success: function(data) {
             obj = JSON.parse(data);
+            console.log(data);
             if(obj.res === 'true') {
               if (obj.tipo_usuario == 0) {
                 swal("Sucesso", "Login efetuado!", "success", {button : false});
@@ -34,9 +35,9 @@
                     window.location = "funcionario/";
                   }, 3000);
               }
-            } else if(data === 'no_user_found') {
+            } else if(obj.res === 'no_user_found') {
               swal("Atenção", "Usuário não encontrado.", "error");
-            } else if(data === 'wrong_password') {
+            } else if(obj.res === 'wrong_password') {
               swal("Atenção", "Senha Incorreta.", "error");
             } else {
               swal("Atenção", "Erro ao conectar com banco de dados. Aguarde e tente novamente em alguns instantes.", "error");

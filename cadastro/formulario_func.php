@@ -5,73 +5,82 @@ if($showerros) {
   error_reporting(E_ALL ^ E_NOTICE ^ E_STRICT);
 }
 session_start();
+// Inicia a sessão
 
 session_name(sha1($_SERVER['HTTP_USER_AGENT'].$_SESSION['email']));
+// Sempre usará nome de sessão diferente
+// Estou concatenando informações sobre o local de onde o acesso está sendo feito + email do user
+// e criptografando com sha1
 
 if (!$_SESSION['check']) {
   session_destroy();
 }
 
-if(empty($_SESSION)){
+if(empty($_SESSION) || $_SESSION['tipo_usuario'] == 0){
   $checkSession = false;
   ?>
   <script>
     window.location = "../";
   </script>
 <?php
-} else {
+}
+else{
   $checkSession = true;
 }
-
+// verifica se a última requisição foi feita há mais de 20 minutos
 if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1201)) {
-  session_unset();
-  session_destroy();
+  session_unset();     // reseta $_SESSION pelo tempo de execução
+  session_destroy();   // destrói a sessão que estava ativa
 }
-$_SESSION['LAST_ACTIVITY'] = time();
+$_SESSION['LAST_ACTIVITY'] = time(); // atualiza o tempo com a última atividade
+
+// require_once "engine/config.php";
 ?>
 
-  <!doctype html>
-  <html lang="pt-br">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="icon" type="../image/x-icon" href="../images/favicon.ico"/>
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="../image/x-icon" href="../images/favicon.ico"/>
 
-    <title>Itangua</title>
-  </head>
+  <title>Itangua</title>
+</head>
 
-  <body>
+<body>
 
-    <!-- INÍCIO BARRA DE NAVEGAÇÃO -->
-    <div class="container row justify-content-sm-center">
-      <br>
-      <br>
-      <br>
-      <div id="myNavbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
+  <!-- INÍCIO BARRA DE NAVEGAÇÃO -->
+<div class="container row justify-content-sm-center">
+  <br>
+  <br>
+  <br>
+  <div id="myNavbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
 
-            <a href="../index.php" class="navbar-brand">ITANGUA</a>
-          </div>
+        <a href="../funcionario/index.php" class="navbar-brand">ITANGUA</a>
+      </div>
 
-          <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-              <li><a class="" href="../index.php">Home</a></li>
-              <li><a class="" href="../cardapio/cardapio.php">Cardápio</a></li>
-              <li><a class="" href="../gerente/controle.php">Controle</a></li>
-            </ul>
-          </div>
-        </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="../funcionario/index.php">Home</a></li>
+            <li><a href="../gerente/controle.php">Controle</a></li>
+            <li><a href="#">Seja bem-vindo <u><?php echo $_SESSION['nome']; ?></u></a></li>
+            <li><a href="../cardapio/carrinho.php"><i class="fa fa-bell fa-1x" aria-hidden="true"></i></a></li>
+            <li><a class="btn btn-danger exitBtn" href="../engine/controllers/logout.php">Sair</a></li>
+        </ul>
       </div>
     </div>
+  </div>
+</div>
     <!-- FIM BARRA DE NAVEGAÇÃO -->
 
     <!-- iNÍCIO DO FORMULÁRIO -->
@@ -118,14 +127,23 @@ $_SESSION['LAST_ACTIVITY'] = time();
           <input type="text" class="form-control" id="inputEmail" placeholder="usuario@exemplo.com">
         </div>
 
-        <div class="form-group col-sm-3">
+        <div class="form-group col-sm-2">
           <label for="inputCidade">Seu CPF</label>
           <input type="text" class="form-control" id="inputCPF" placeholder="999.999.999-99">
         </div>
 
-        <div class="form-group col-sm-3">
+        <div class="form-group col-sm-2">
           <label for="inputTelefone">Celular</label>
-          <input type="text" id="inputTelefone" placeholder="99999-9999" class="form-control">
+          <input type="text" id="inputTelefone" placeholder="(99) 9-9999-9999" class="form-control">
+        </div>
+
+        <div class="form-group col-sm-2">
+          <label for="inputTelefone">Nível de Acesso</label>
+          <select id="tipo_funcionario" class="form-control">
+            <option value="">Selecione...</option>
+            <option value="2">Funcionário</option>
+            <option value="1">Admin</option>
+          </select>
         </div>
 
         <div class="form-group col-sm-3">
@@ -197,10 +215,11 @@ $_SESSION['LAST_ACTIVITY'] = time();
       inputEmail = $("#inputEmail").val(),
       inputCPF = $("#inputCPF").val(),
       inputTelefone = $("#inputTelefone").val(),
+      tipo_funcionario = $("#tipo_funcionario").val(),
       inputSenha = $("#inputSenha").val(),
       inputConfirmar_Senha = $("#inputConfirmar_Senha").val();
 
-      if (inputNome == "" || inputIdade == "" || inputGenero == "" || inputEmail == "" || inputCPF == "" || inputTelefone == "" || inputSenha == "" || inputConfirmar_Senha == ""){
+      if (inputNome == "" || inputIdade == "" || inputGenero == "" || inputEmail == "" || inputCPF == "" || inputTelefone == "" || tipo_funcionario == "" || inputSenha == "" || inputConfirmar_Senha == ""){
         return swal("Atenção", "Todos os campos devem ser preenchidos!", "info");
       }
       if (inputSenha != inputConfirmar_Senha) {
@@ -210,7 +229,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
       $.post('../engine/controllers/funcionarios.php',
       {
         nome : inputNome,
-        tipo_funcionario : 1, // 1 = user, 2 = admin
+        tipo_funcionario : tipo_funcionario, // 0 = user, 1 = admin
         idade : inputIdade,
         genero : inputGenero,
         email : inputEmail,

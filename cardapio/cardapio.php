@@ -88,7 +88,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
           <span class="icon-bar"></span>
         </button>
 
-        <a href="#" class="navbar-brand">ITANGUA</a>
+        <a href="../cliente" class="navbar-brand">ITANGUA</a>
       </div>
       <!-- NAV após logar -->
       <div class="navbar-collapse collapse">
@@ -104,7 +104,8 @@ $_SESSION['LAST_ACTIVITY'] = time();
             </ul>
           </li>
           <li><a href="#">Seja bem-vindo <u><?php echo $_SESSION['nome']; ?></u></a></li>
-          <li><a href="#"><i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i></a></li>
+          <li><a href="carrinho.php"><i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i></a></li>
+          <li><a href="../cardapio/carrinho.php"><i class="fa fa-bell fa-1x" aria-hidden="true"></i></a></li>
           <li><a class="btn btn-danger" href="../engine/controllers/logout.php">Sair</a></li>
         </ul>
       </div>
@@ -113,75 +114,48 @@ $_SESSION['LAST_ACTIVITY'] = time();
   <!-- FIM BARRA DE NAVEGAÇÃO -->
 
   <!-- INÍCIO DO CARDÁPIO -->
-  <div id="depoimentos" class="depoimentos">
+  <div id="cardapio" class="depoimentos">
     <div class="container">
       <h2 class="wow fadeInUp">Cardápio</h2>
       <div class="row">
 
-        <div class="col-lg-3 col-md-3 wow fadeInLeft" data-wow-delay="1.5s">
-          <img src="../images/1.jpg" class="img-circle">
-          <h4 id="breja01-title">Cerveja Artesanal - Leopoldina</h4>
-          <p id="breja01-desc">Leopoldina Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado.</p>
-          <a href="#" type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#modalOpcBeer" id="breja01">Adicionar ao carrinho</a>
-        </div>
+        <?php
+        require_once "../engine/config.php";
 
-        <div class="col-lg-3 col-md-3 wow fadeInLeft" data-wow-delay="1s">
-          <img src="../images/3.jpg" class="img-circle">
-          <h4 id="breja02-title">Império</h4>
-          <p id="breja02-desc">Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI.</p>
-          <a href="#" type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#modalOpcBeer" id="breja02">Adicionar ao carrinho</a>
-        </div>
+        function unique_multidim_array($array, $key) {
+          $temp_array = array();
+          $i = 0;
+          $key_array = array();
 
-        <div class="col-lg-3 col-md-3 wow fadeInLeft" data-wow-delay="0.5s">
-          <img src="../images/5.jpg" class="img-circle">
-          <h4 id="breja03-title">Corona Extra</h4>
-          <p id="breja03-desc">Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI.</p>
-          <a href="#" type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#modalOpcBeer" id="breja03">Adicionar ao carrinho</a>
-        </div>
+          foreach($array as $val) {
+              if (!in_array($val[$key], $key_array)) {
+                  $key_array[$i] = $val[$key];
+                  $temp_array[$i] = $val;
+              }
+              $i++;
+          }
+          return $temp_array;
+      }
 
-        <div class="col-lg-3 col-md-3 wow fadeInLeft" data-wow-delay="0s">
-          <img src="../images/2.png" class="img-circle">
-          <h4 id="breja04-title">Burgman lager</h4>
-          <p id="breja04-desc">Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI.</p>
-          <a href="#" type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#modalOpcBeer" id="breja04">Adicionar ao carrinho</a>
-        </div>
+        $Produtos = new Produtos();
+        $Produtos = $Produtos->ReadAll();
+        $Produtos = unique_multidim_array($Produtos, 'cod_prod');
+
+        foreach ($Produtos as $prod) {
+          $Anexo = new Anexo_produtos();
+          $Anexo = $Anexo->Read_fk($prod['id']);
+          ?>
+          <div class="col-lg-3 col-md-3 wow fadeInLeft">
+            <img src="data:image/png;base64,<?php echo base64_encode($Anexo['arquivo']); ?>" class="img-circle" id="imgBreja<?php echo $prod['id'];?>">
+            <h4 id="nomeBreja<?php echo $prod['id'];?>"><?php echo $prod['nome_prod']; ?></h4>
+            <p hidden id="valorBreja<?php echo $prod['id'];?>" class="text-center" style="margin-top: -15px;"><?php echo $prod['valor']; ?>/un</p>
+            <p id="descBreja<?php echo $prod['id'];?>"><?php echo $prod['desc_prod']; ?></p>
+            <a href="#" type="button" class="btn btn-info btn-block cod_prod brejaTal" data-toggle="modal" data-target="#modalOpcBeer" codigo="<?php echo $prod['cod_prod'];?>" id="breja<?php echo $prod['id'];?>" onclick="document.getElementById('aux_codigo').value = $(this).attr('codigo');" id-aux="<?php echo $prod['id'];?>">Adicionar ao carrinho</a>
+          </div>
+        <?php } ?>
       </div>
-
-      <div class="row">
-
-        <div class="col-lg-3 col-md-3 wow fadeInLeft" data-wow-delay="1.5s">
-          <img src="../images/7.jpg" class="img-circle">
-          <h4 id="breja05-title">Bud Light</h4>
-          <p id="breja05-desc">Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI.</p>
-          <a href="#" type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#modalOpcBeer" id="breja05">Adicionar ao carrinho</a>
-        </div>
-
-        <div class="col-lg-3 col-md-3 wow fadeInLeft" data-wow-delay="1s">
-          <img src="../images/8.jpg" class="img-circle">
-          <h4 id="breja06-title">EISENBAHN</h4>
-          <p id="breja06-desc">Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI.</p>
-          <a href="#" type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#modalOpcBeer" id="breja06">Adicionar ao carrinho</a>
-        </div>
-
-        <div class="col-lg-3 col-md-3 wow fadeInLeft" data-wow-delay="0.5s">
-          <img src="../images/9.jpg" class="img-circle">
-          <h4 id="breja07-title">Madalena Weiss</h4>
-          <p id="breja07-desc">Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI.</p>
-          <a href="#" type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#modalOpcBeer" id="breja07">Adicionar ao carrinho</a>
-        </div>
-
-        <div class="col-lg-3 col-md-3 wow fadeInLeft" data-wow-delay="0s">
-          <img src="../images/10.jpg" class="img-circle">
-          <h4 id="breja08-title">1795 Original Czech Lager</h4>
-          <p id="breja08-desc">Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI.</p>
-          <a href="#" type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#modalOpcBeer" id="breja08">Adicionar ao carrinho</a>
-        </div>
-      </div>
-
     </div>
-
   </div>
-</div>
 <!-- FIM DO CARDÁPIO -->
 
 <!-- Modal Opção Cerveja -->
@@ -189,14 +163,16 @@ $_SESSION['LAST_ACTIVITY'] = time();
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Gerar Benefício Social</h4>
+        <h4 class="modal-title text-center">Detalhes do Produto</h4>
       </div>
       <div class="modal-body">
         <div class="row">
+          <input hidden type="text" id="aux_codigo">
           <div class="text-center col-md-12">
-            <img id="brejaModal" src="../images/3.jpg" class="img-circle" style="width: 200px;">
-            <h4 id="tituloBreja">Cerveja Artesanal - Famiglia Valduga</h4>
-            <p id="descBreja">Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI.</p>
+            <img id="brejaModal" src="" class="img-circle" style="width: 200px;">
+            <h4 id="tituloBreja"></h4>
+            <p id="breja-val" class="text-center" style="margin-top: -10px;"></p>
+            <p id="descBreja"></p>
             <hr>
           </div>
 
@@ -204,27 +180,59 @@ $_SESSION['LAST_ACTIVITY'] = time();
             <div class="col-md-6">
               <p class="text-center"><b>Tipo</b></p>
               <select class="form-control" id="tipoCerveja">
-                <option>Selecione...</option>
-                <option>250ml</option>
-                <option>600ml</option>
+                <option value="">Selecione...</option>
+                <option value="1">250ml</option>
+                <option value="2">600ml</option>
+                <option value="3">Litrão</option>
               </select>
             </div>
 
             <div class="col-md-6">
+              <p class="text-center"><b>Valor Unitário</b></p>
+              <input disabled type="text" class="form-control text-center" id="valorBrejaUnit" value="R$ ">
+            </div>
+          </div>
+
+          <div class="col-md-12" style="margin-top: 15px;">
+            <div class="col-md-6">
               <p class="text-center"><b>Quantidade</b></p>
-              <label for="inputquantidade" class="sr-only">Quantidade</label>
-              <input type="number" MIN=0 class="form-control" id="inputquantidade" placeholder="Quantidade">
+              <input type="number" MIN=0 class="form-control" id="inputquantidade" placeholder="Quantidade" value="0">
+            </div>
+
+            <div class="col-md-6">
+              <p class="text-center"><b>Valor Total</b></p>
+              <input disabled type="text" class="form-control text-center" id="valorBrejaTotal" value="R$">
             </div>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <a id="add_carrinho" type="button" class="btn btn-info btn-block" href="#">Add carrinho</a>
+        <!-- <a id="add_carrinho" type="button" class="btn btn-info btn-block" href="#" data-toggle="modal" data-dismiss="modal" data-target="#ask_carrinho">Add carrinho</a> -->
+        <button id="add_carrinho" class="btn btn-info btn-block" data-toggle="modal">Add carrinho</button>
       </div>
     </div>
   </div>
 </div>
 <!-- Fim Opção Cerveja -->
+
+<div id="ask_carrinho" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title text-center">Produto adicionado!</h3>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-center">O que deseja fazer?</h4>
+      </div>
+      <div class="modal-footer">
+        <p class="text-center">
+          <button type="button" class="btn btn-success" data-dismiss="modal">Continuar comprando</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="window.location = 'carrinho.php'">Ir para o carrinho</button>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div id="footer" class="footer">
   <div class="container">
@@ -254,7 +262,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
   </div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="../js/jquery-1.11.3.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/sweetalert.js"></script>
 <script src="../js/login.js"></script>
@@ -266,97 +274,77 @@ $_SESSION['LAST_ACTIVITY'] = time();
 <script type="text/javascript">
   new WOW().init();
 
-  $('.nav_roll').click(function(e){
-    e.preventDefault();
-
-    var id = $(this).attr('href'),
-    targetOffset = $(id).offset().top,
-    menuHeight = $('#myNavbar').innerHeight();
-
-    $('body, html').animate({
-      scrollTop: targetOffset - menuHeight
-    }, 1700);
-    console.log(targetOffset);
+  $('#modalOpcBeer').on('shown.bs.modal', function(e){
+    document.getElementById('inputquantidade').value = "0";
+    document.getElementById('tipoCerveja').value = "";
+    document.getElementById('valorBrejaUnit').value = "R$";
+    document.getElementById('valorBrejaTotal').value = "R$";
   });
 
-  $('#enviar-mensagem').click(function(e){
+  $('.brejaTal').click(function(e){
     e.preventDefault();
 
-    alert('Mensagem enviada com sucesso!');
+    var id_aux = $(this).attr('id-aux');
+
+    $("#brejaModal").attr("src", $("#imgBreja"+id_aux).attr("src"));
+    $('#tituloBreja').text($('#nomeBreja'+id_aux).text());
+    $('#descBreja').text($('#descBreja'+id_aux).text());
+  });
+
+  $('#tipoCerveja').change(function(e){
+    e.preventDefault();
+
+    var cod_prod = $('#aux_codigo').val(),
+        tipo_prod = $('#tipoCerveja').val();
+
+    $.post('../engine/controllers/produtos.php',
+    {
+      cod_prod : cod_prod,
+      tipo_prod : tipo_prod,
+      action : 'consultaValor'
+    },
+    function(data, status){
+      obj = JSON.parse(data);
+      if (obj.res && obj.valor != null) {
+        document.getElementById('valorBrejaUnit').value = obj.valor;
+      } else {
+        document.getElementById('valorBrejaUnit').value = 'Produto Indisponível';
+      }
+    });
+  });
+
+  $('#inputquantidade').change(function(e){
+    e.preventDefault();
+
+    var valorBrejaUnit = $('#valorBrejaUnit').val(),
+        quatidade = $(this).val();
+
+    $.post('../engine/controllers/produtos.php',
+    {
+      valorBrejaUnit : valorBrejaUnit,
+      quatidade : quatidade,
+      action : 'valorTotal'
+    },
+    function(data, status){
+      document.getElementById('valorBrejaTotal').value = "R$ "+data;
+    });
   });
 
   $('#add_carrinho').click(function(e){
     e.preventDefault();
 
-    swal("Sucesso", "Ir pro carrinho?", "success", {
-      buttons: {
-        cancel: true,
-        confirm: "Sim",
-      },
-    });
+    var aux = $('#valorBrejaUnit').val(),
+        quantidade = $('#inputquantidade').val();
+
+    if (aux == 'Produto Indisponível' || quantidade == 0) {
+      swal("Atenção!", "Produto Indisponível ou quantidade inválida.", "info");
+    } else {
+      $('#modalOpcBeer').modal('hide');
+      $('#ask_carrinho').modal('show');
+    }
   });
 
-  $('#breja01').click(function(e){
-    e.preventDefault();
 
-    $("#brejaModal").attr("src", "../images/1.jpg");
-    $('#tituloBreja').text($('#breja01-title').text());
-    $('#descBreja').text($('#breja01-desc').text());
-  });
 
-  $('#breja02').click(function(e){
-    e.preventDefault();
 
-    $("#brejaModal").attr("src", "../images/3.jpg");
-    $('#tituloBreja').text($('#breja02-title').text());
-    $('#descBreja').text($('#breja02-desc').text());
-  });
-
-  $('#breja03').click(function(e){
-    e.preventDefault();
-
-    $("#brejaModal").attr("src", "../images/5.jpg");
-    $('#tituloBreja').text($('#breja03-title').text());
-    $('#descBreja').text($('#breja03-desc').text());
-  });
-
-  $('#breja04').click(function(e){
-    e.preventDefault();
-
-    $("#brejaModal").attr("src", "../images/2.png");
-    $('#tituloBreja').text($('#breja04-title').text());
-    $('#descBreja').text($('#breja04-desc').text());
-  });
-
-  $('#breja05').click(function(e){
-    e.preventDefault();
-
-    $("#brejaModal").attr("src", "../images/7.jpg");
-    $('#tituloBreja').text($('#breja05-title').text());
-    $('#descBreja').text($('#breja05-desc').text());
-  });
-
-  $('#breja06').click(function(e){
-    e.preventDefault();
-
-    $("#brejaModal").attr("src", "../images/8.jpg");
-    $('#tituloBreja').text($('#breja06-title').text());
-    $('#descBreja').text($('#breja06-desc').text());
-  });
-
-  $('#breja07').click(function(e){
-    e.preventDefault();
-
-    $("#brejaModal").attr("src", "../images/9.jpg");
-    $('#tituloBreja').text($('#breja07-title').text());
-    $('#descBreja').text($('#breja07-desc').text());
-  });
-
-  $('#breja08').click(function(e){
-    e.preventDefault();
-
-    $("#brejaModal").attr("src", "../images/10.jpg");
-    $('#tituloBreja').text($('#breja08-title').text());
-    $('#descBreja').text($('#breja08-desc').text());
-  });
 </script>
